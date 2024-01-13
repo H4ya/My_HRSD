@@ -1,10 +1,10 @@
 import cv2
 
 # تحميل مصنف وجه مسبقاً
-face_cascade = cv2.CascadeClassifier('myfacedetector.xml')
+face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades +'hand_haar_cascade.xml')
 
 # تهيئة مصدر الفيديو
-video_capture = cv2.VideoCapture(0)
+video_capture = cv2.VideoCapture(1)
 
 while True:
     # قراءة الإطار الحالي من الفيديو
@@ -14,7 +14,7 @@ while True:
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
     # الكشف عن الوجوه في الإطار الرمادي
-    faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
+    faces = face_cascade.detectMultiScale(gray,1.3, 5)
 
     # رسم مربع حول الوجوه المكتشفة
     for (x, y, w, h) in faces:
